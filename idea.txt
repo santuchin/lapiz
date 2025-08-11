@@ -1,0 +1,26 @@
+
+types are defined by cardinality
+
+numbers:
+	if defined
+		use defined
+
+	else
+		if can infer
+			use infered
+		
+		else
+			use unfixed
+
+DEF main FUN main []
+
+`[]` is for tuples, that's how arrays, structs will be represented
+`()` for block expressions
+
+`def name value`, is for defining something, like C's `#define`
+`fn parameter result` is for functions
+`tag` is for defining a label
+`go` is for goto
+
+
+main = fn [] ()
