@@ -4,6 +4,7 @@ let offsetX = 0, offsetY = 0;
 let lastMouseX = 0, lastMouseY = 0;
 
 function createNode(name) {
+
     const node = document.createElement('div');
     node.className = 'node';
 
@@ -36,8 +37,10 @@ function createNode(name) {
     sign.textContent = name;
 	
     const canvasRect = document.getElementById('canvas').getBoundingClientRect();
+    
     let x = lastMouseX - canvasRect.left;
     let y = lastMouseY - canvasRect.top;
+
     node.style.position = 'absolute';
     node.style.left = x + 'px';
     node.style.top = y + 'px';
@@ -46,23 +49,32 @@ function createNode(name) {
 }
 
 function dragNode(node, x, y) {
+    
     currentNode = node;
     selectedNode = node;
-    node.get.style.zIndex = 3
+    
+    node.style.zIndex = 3
+    
     const rect = node.getBoundingClientRect();
+    
     offsetX = x - rect.left;
     offsetY = y - rect.top;
+
     node.style.zIndex = 10;
     document.body.style.userSelect = 'none';
 }
 
-document.addEventListener('mousemove', function(e) {
-    lastMouseX = e.clientX;
-    lastMouseY = e.clientY;
+document.addEventListener('mousemove', function(event) {
+
+    lastMouseX = event.clientX;
+    lastMouseY = event.clientY;
+       
     if (!currentNode) return;
+
     const canvasRect = document.getElementById('canvas').getBoundingClientRect();
-    let x = e.clientX - canvasRect.left - offsetX;
-    let y = e.clientY - canvasRect.top - offsetY;
+    let x = lastMouseX - canvasRect.left - offsetX;
+    let y = lastMouseY - canvasRect.top - offsetY;
+    
     currentNode.style.position = 'absolute';
     currentNode.style.left = x + 'px';
     currentNode.style.top = y + 'px';
